@@ -7,7 +7,7 @@ I made this primarily for the Hoggit GCI. The online GCI only uses DMS, which ma
 ## Install/Setup
 There is no setup or install required at the moment. You just download and run!
 
-##Usage
+#Usage
 Follow the menu prompts. Get a DMS Coordinate/Lat or Long, like: 44 35' 59.26" N
 Enter each step of the coordinate. '44' - Degrees, '35' - Minutes, '59' - Seconds
 You will then receive an output, like: (44, 39.983)
