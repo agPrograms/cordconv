@@ -2,10 +2,8 @@ import subprocess
 
 # Convert Degreess Minutes Seconds to Degrees Decimal Minutes
 def dms2ddm(deg,min,sec):
-    deg1 = int(deg) # we need to convert due to 1the fact that the inpu1t deosnt need a deciaml point.
-    sec1 = str(sec/60)[0:5] # Divide sec by 60 for DMS -> DDM conversion. Convert to string and count length up to 5 from 0 for use. No more is needed for DCS.
-    sec2 = float(sec1) # Convert back to float for use in the next line.
-    ddm2 = deg1, min + sec2 # Add the minutes and seconds together to complete the DDM conversion.
+    sec1 = float(str(sec/60)[0:5])+min # improved since 1.0. 
+    ddm2 = int(deg), sec1 # improved since 1.0 
     return ddm2
 
 # Copy output to clipboard
