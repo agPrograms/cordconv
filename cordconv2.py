@@ -14,6 +14,7 @@ def dms2ddm(deg,min,sec):
 def copy2clip(txt):
     cmd='echo '+txt.strip()+'|clip'
     return subprocess.check_call(cmd, shell=True)
+print(version)
 menu = {}
 menu['1']="Convert DMS to Degress Decimal Minutes"
 menu['2']="Exit"
