@@ -10,6 +10,7 @@ There is no setup or install required at the moment. You just download and run!
 ## Usage
 Follow the menu prompts. Get a DMS Coordinate/Lat or Long, like: 44 35' 59.26" N
 Enter each step of the coordinate. '44' - Degrees, '35' - Minutes, '59' - Seconds
-You will then receive an output, like: (44, 39.983)
+You will then receive an output, like: (44, 39.983) That's it!
 
-That's it!
+##Suspicious File Notice
+It is known that when you download this application (from releases), it will warn you that the file has no known owner/developer signed. That is fine, the code is all here! If you do not trust it, thats ok. You can use a package called pyinstaller to convert it to a .exe yourself or just download this branch's cordconv2.py file and run it yourself!
