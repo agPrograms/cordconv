@@ -2,6 +2,7 @@ import subprocess
 import re
 import os
 
+version = 'Version 1.2.0\n'
 file = 'coords123.txt'
 # Convert Degreess Minutes Seconds to Degrees Decimal Minutes
 def dms2ddm(deg,min,sec):
