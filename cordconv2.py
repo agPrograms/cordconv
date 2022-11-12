@@ -1,6 +1,8 @@
 import subprocess
 import re
 import os
+import colorama
+colorama.init(wrap=True) # Initialize colorama, fix for Windows!
 
 # just some colors for QoL.
 class bcolors:
