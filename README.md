@@ -9,9 +9,9 @@ There is no setup or install required at the moment. You just download and run!
 The tool will create a directory called 'cordconvs' in the location it is executed in. This is where the coordinate files will be saved.
 
 ## Usage
-**First time start-up**
+**First time start-up**  
 Drag and drop the tool in the location you desire. Such as your desktop!  
-Open the tool, you should see a green message say: 'coordconv folder created at C:\Users\You!\Desktop\cordconvs' !'  
+Open the tool, you should see a green message say: 'coordconv folder created at C:\Users\You!\Desktop\cordconvs!'  
 **Normal Usage**  
 Follow the on screen prompts to convert.  
 The tool will copy the outputs of each step (North DDM, East DDM, North and East DMS) to your clipboard and echos it on screen in blue text. **However**, you can opt to have the tool create a .txt file and it will paste the outputs there - to which it will open it for you!  
