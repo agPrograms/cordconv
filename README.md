@@ -20,3 +20,11 @@ The tool will create a directory called 'cordconvs' in the location it is execut
 
 ## Suspicious File Notice
 It is known that when you download this application (from releases), it will warn you that the file has no known owner/developer signed. That is fine, the code is all here! If you do not trust it, thats ok. You can use a package called pyinstaller to convert it to a .exe yourself or just download this branch's cordconv2.py file and run it yourself!
+
+#### Self-Compile Instructions
+1. Install pyinstaller: https://pyinstaller.org/en/stable/installation.html
+2. Use command `pyinstaller --onefile cordconv2repo.py`.
+3. The .EXE will be located in the `dist` folder.
+4. Run `cordconv2repo.py` and enjoy!
+
+
