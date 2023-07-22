@@ -4,19 +4,19 @@ import os
 import colorama
 colorama.init(wrap=True) # Initialize colorama, fix for Windows!
 
-# just some colors for QoL.
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+# data = re.sub('[()''"",]', '', str(ddm2)) ??? Do this at the return of ddm2?
 
-version = f"{bcolors.OKGREEN}Version - 1.3.0{bcolors.ENDC}\n"
+# just some colors for QoL.
+# I need to shorten these...
+class b:
+    blu = '\033[94m'
+    cy = '\033[96m'
+    grn = '\033[92m'
+    warn = '\033[93m'
+    fail = '\033[91m'
+    end = '\033[0m'
+
+version = f"{b.grn}Version - 1.3.2{b.end}\n"
 file = '\coords_dms-ddm.txt'
 filedd = '\coords_dd-dms.txt'
 filefold = os.getcwd()+"\cordconvs"
@@ -26,7 +26,7 @@ class cordconvme:
     def findit():
         if os.path.exists(filefold) != True:
             os.mkdir(filefold)
-            print(f"{bcolors.OKGREEN}cordconv folder created at " + filefold + f"{bcolors.ENDC} !")
+            print(f"{b.grn}cordconv folder created at " + filefold + f"{b.end} !")
     # have an idea to make game detection effect menu items. Right now it just prints if a game is running.
     def gamefind(game_name):
         call = 'TASKLIST', '/FI', 'imagename eq %s' % game_name
@@ -35,11 +35,11 @@ class cordconvme:
         return last_line.lower().startswith(game_name.lower())
     def gamecatch():
         if cordconvme.gamefind("DCS.exe") == True:
-            print(f"{bcolors.OKGREEN}DCS is running!{bcolors.ENDC}")
+            print(f"{b.grn}DCS is running!{b.end}")
         elif cordconvme.gamefind("MicrosoftFlightSimulator.exe") == True:
-            print(f"{bcolors.OKGREEN}MSFS is running!{bcolors.ENDC}")
+            print(f"{b.grn}MSFS is running!{b.end}")
         elif cordconvme.gamefind("DCS.exe" or "MicrosoftFlightSimulator.exe") == False:
-            print(f"{bcolors.FAIL}No game is running!{bcolors.ENDC}")
+            print(f"{b.fail}No supported game is running!{b.end}")
 
 def dms2ddm(deg,min,sec):
     sec1 = str(float(str(sec/60)[0:5])+min);ddm2 = int(deg), sec1
@@ -60,9 +60,9 @@ cordconvme.gamecatch()
 cordconvme.findit()
 
 menu = {} # can I put the start of the colors here? and edn it at menu entry 3?
-menu['1']=f"{bcolors.OKCYAN}(DCS) Convert DMS to Degress Decimal Minutes{bcolors.ENDC}"
-menu['2']=f"{bcolors.OKCYAN}(MSFS) Convert LatLong DD to DMS{bcolors.ENDC}"
-menu['3']=f"{bcolors.OKCYAN}Exit{bcolors.ENDC}"
+menu['1']=f"{b.cy}(DCS) Convert DMS to Degress Decimal Minutes{b.end}"
+menu['2']=f"{b.cy}(MSFS) Convert LatLong DD to DMS{b.end}"
+menu['3']=f"{b.cy}Exit{b.end}"
 while True:
     options=menu.keys()
     for entry in options: 
@@ -71,34 +71,50 @@ while True:
     if selection =='1': 
         coords = []
         # Get the north coordinates from the user
-        print(f"{bcolors.OKGREEN}Convert DMS to Degrees Decimal Minutes \n {bcolors.ENDC}")
-        print(f"{bcolors.OKGREEN}Enter North Degrees \n {bcolors.ENDC}")
+        print(f"{b.grn}Convert DMS to Degrees Decimal Minutes \n {b.end}")
+        print(f"{b.grn}Enter North Degrees \n {b.end}")
         deg = float(input())
-        print(f"{bcolors.OKGREEN}Enter North Minutes \n {bcolors.ENDC}")
+        print(f"{b.grn}Enter North Minutes \n {b.end}")
         min = float(input())
-        print(f"{bcolors.OKGREEN}Enter North Seconds \n {bcolors.ENDC}")
+        print(f"{b.grn}Enter North Seconds \n {b.end}")
         sec = float(input())
         ddmResult = dms2ddm(deg,min,sec)
-        print(f'\n{bcolors.OKBLUE}DDM: N', ddmResult, f'\n {bcolors.ENDC}')
+        print(f'\n{b.blu}DDM: N', ddmResult, f'\n {b.end}')
         copy2clip(str(ddmResult))
         coords.append(str('N'+str(ddmResult)))
         print('NORTH Degrees Decimal Minutes copied to clipboard! \n')
 
         # Get the east coordinates from the user
-        print(f"{bcolors.OKGREEN}Enter East Degrees \n {bcolors.ENDC}")
+        print(f"{b.grn}Enter East Degrees \n {b.end}")
         deg = float(input())
-        print(f"{bcolors.OKGREEN}Enter East Minutes \n {bcolors.ENDC}")
+        print(f"{b.grn}Enter East Minutes \n {b.end}")
         min = float(input())
-        print(f"{bcolors.OKGREEN}Enter East Seconds \n {bcolors.ENDC}")
+        print(f"{b.grn}Enter East Seconds \n {b.end}")
         sec = float(input())
         ddmResult = dms2ddm(deg,min,sec)
-        print(f'\n{bcolors.OKBLUE}DDM: E', ddmResult,f'\n {bcolors.ENDC}')
-        copy2clip(str(ddmResult))
-        coords.append(str('E'+str(ddmResult)))
-        print('EAST Degrees Decimal Minutes copied to clipboard! \n')
+        ddmString = str(ddmResult) # this down to the else is new. get rid of it if it doesn't work.
+        if ddmString[0:1] != '0':
+            ddmResult = '0'+str(ddmString) # Zero is placed in front of the paranthesis. REGEX?
+            print(f'\n{b.blu}DDM: E', ddmResult,f'\n {b.end}')
+            copy2clip(str(ddmResult))
+            coords.append(str('E'+str(ddmResult)))
+            print(f'{b.warn}Zero Missing, Corrected!{b.end}')
+            print('EAST Degrees Decimal Minutes copied to clipboard! \n')
+        elif len(ddmString) != 17:
+            ddmResult = str(ddmString)+'0'
+            print(f'\n{b.blu}DDM: E', ddmResult,f'\n {b.end}')
+            copy2clip(str(ddmResult))
+            coords.append(str('E'+str(ddmResult)))
+            print(f'{b.warn}Zero Missing, Corrected!{b.end}')
+            print('EAST Degrees Decimal Minutes copied to clipboard! \n')
+        else:
+            print(f'\n{b.blu}DDM: E', ddmResult,f'\n {b.end}')
+            copy2clip(str(ddmResult))
+            coords.append(str('E'+str(ddmResult)))
+            print('EAST Degrees Decimal Minutes copied to clipboard! \n')
 
         # Ask the user if they want to copy the coordinates to a notepad document.
-        print('Copy both coordinates to a txt file/notepad? [Y/n]\n');print(f'{bcolors.WARNING}!!!*** WARNING: This will overwrite the file coords_dms-ddm.txt where this is executed! ***!!!{bcolors.ENDC}\n')
+        print('Copy both coordinates to a txt file/notepad? [Y/n]\n');print(f'{b.warn}!!!*** warn: This will overwrite the file coords_dms-ddm.txt where this is executed! ***!!!{b.end}\n')
         fnlchoice = str(input('Y/n: ').lower()) # convert user input to lower case
         if fnlchoice.startswith('y'):
             data = re.sub('[()''"",]', '', str(coords)[1:-1]) # GET RID OF SYMBOLS AND []
@@ -115,14 +131,14 @@ while True:
 
     elif selection == '2':
         print("Convert LatLong DD to DMS \n")
-        print(f"{bcolors.OKGREEN}Enter Latitude \n {bcolors.ENDC}")
+        print(f"{b.grn}Enter Latitude \n {b.end}")
         lat = dd2dms(float(input()))
-        print(f"{bcolors.OKGREEN}Enter Longitude \n {bcolors.ENDC}")
+        print(f"{b.grn}Enter Longitude \n {b.end}")
         lon = dd2dms(float(input()))
-        print(f'\n{bcolors.OKBLUE}DMS: ', lat, lon, f'\n{bcolors.ENDC}')
+        print(f'\n{b.blu}DMS: ', lat, lon, f'\n{b.end}')
         copy2clip(str(lat)+str(lon))
         print('DMS copied to clipboard! \n')
-        print('Copy both coordinates to a txt file/notepad? [Y/n]\n');print(f'{bcolors.WARNING}!!!*** WARNING: This will overwrite the file coords_dd-dms.txt where this is executed! ***!!!{bcolors.ENDC}\n')
+        print('Copy both coordinates to a txt file/notepad? [Y/n]\n');print(f'{b.warn}!!!*** warn: This will overwrite the file coords_dd-dms.txt where this is executed! ***!!!{b.end}\n')
         fnlchoice = str(input('Y/n: ').lower())
         if fnlchoice.startswith('y'):
             data = re.sub('[()''"",]', '', str(lat)+str(lon))
